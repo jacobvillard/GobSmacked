@@ -24,6 +24,12 @@ public:
  UPROPERTY(BlueprintAssignable, Category = "EOS|Session")
  FOnLobbyCreated OnLobbyCreated;
 
- UFUNCTION(BlueprintCallable, Category = "Online|Session")
+ UFUNCTION(BlueprintCallable, Category = "EOS|Session")
  FString GetLobbyNameFromResult(const FBlueprintSessionResult& Result);
+
+ UFUNCTION(BlueprintCallable, Category = "EOS|Session")
+ FString GetLobbyTypeFromResult(const FBlueprintSessionResult& Result);
+
+ UFUNCTION(BlueprintCallable, Category = "EOS|Session")
+ FString GetLobbyCodeFromResult(const FBlueprintSessionResult& Result);
 };

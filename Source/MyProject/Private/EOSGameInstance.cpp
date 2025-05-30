@@ -92,4 +92,24 @@ FString UEOS_C_GI::GetLobbyNameFromResult(const FBlueprintSessionResult& Result)
 	return TEXT("Unknown");
 }
 
+FString UEOS_C_GI::GetLobbyTypeFromResult(const FBlueprintSessionResult& Result)
+{
+	FString OutName;
+	if (Result.OnlineResult.Session.SessionSettings.Get(FName(TEXT("LobbyType")), OutName))
+	{
+		return OutName;
+	}
+	return TEXT("Unknown");
+}
+
+FString UEOS_C_GI::GetLobbyCodeFromResult(const FBlueprintSessionResult& Result)
+{
+	FString OutName;
+	if (Result.OnlineResult.Session.SessionSettings.Get(FName(TEXT("LobbyCode")), OutName))
+	{
+		return OutName;
+	}
+	return TEXT("Unknown");
+}
+
 

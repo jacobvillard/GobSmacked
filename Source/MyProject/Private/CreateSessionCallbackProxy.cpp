@@ -62,7 +62,7 @@ UCreateSessionCallbackProxyMP::UCreateSessionCallbackProxyMP(const FObjectInitia
 {
 }
 
-UCreateSessionCallbackProxyMP* UCreateSessionCallbackProxyMP::CreateSession(UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable, FString SessionName)
+UCreateSessionCallbackProxyMP* UCreateSessionCallbackProxyMP::CreateSession(UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable, FString SessionName, FString LobbyType, FString LobbyCode)
 {
 	UCreateSessionCallbackProxyMP* Proxy = NewObject<UCreateSessionCallbackProxyMP>();
 	Proxy->PlayerControllerWeakPtr = PlayerController;
@@ -71,6 +71,8 @@ UCreateSessionCallbackProxyMP* UCreateSessionCallbackProxyMP::CreateSession(UObj
 	Proxy->bUseLobbiesIfAvailable = bUseLobbiesIfAvailable;
 	Proxy->WorldContextObject = WorldContextObject;
 	Proxy->LobbyName = SessionName;
+	Proxy->LobbyType = LobbyType;
+	Proxy->LobbyCode = LobbyCode;
 	return Proxy;
 }
 
@@ -96,6 +98,8 @@ void UCreateSessionCallbackProxyMP::Activate()
 			Settings.bUseLobbiesIfAvailable = bUseLobbiesIfAvailable;
 
 			Settings.Settings.Add( FName(TEXT("ServerName")), FOnlineSessionSetting(FString(LobbyName), EOnlineDataAdvertisementType::ViaOnlineService));
+			Settings.Settings.Add( FName(TEXT("LobbyType")), FOnlineSessionSetting(FString(LobbyType), EOnlineDataAdvertisementType::ViaOnlineService));
+			Settings.Settings.Add( FName(TEXT("LobbyCode")), FOnlineSessionSetting(FString(LobbyCode), EOnlineDataAdvertisementType::ViaOnlineService));
 			Settings.Set( FName(TEXT("ServerYAS")), FOnlineSessionSetting(FString(TEXT("69696TST")), EOnlineDataAdvertisementType::ViaOnlineService));
 
 

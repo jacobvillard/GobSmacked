@@ -22,7 +22,7 @@ class UCreateSessionCallbackProxyMP : public UOnlineBlueprintCallProxyBase
 
 	// Creates a session with the default online subsystem
 	UFUNCTION(BlueprintCallable, meta=(BlueprintInternalUseOnly = "true", WorldContext="WorldContextObject"), Category = "Online|Sessioen")
-	static UCreateSessionCallbackProxyMP* CreateSession(UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable = true, FString SessionName = TEXT("DefaultSession"));
+	static UCreateSessionCallbackProxyMP* CreateSession(UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable = true, FString SessionName = TEXT("DefaultSession"), FString LobbyType = TEXT("Public"), FString LobbyCode = TEXT("1234"));
 
 	// UOnlineBlueprintCallProxyBase interface
 	virtual void Activate() override;
@@ -61,6 +61,12 @@ private:
 	UObject* WorldContextObject;
 
 	FString LobbyName = TEXT("DefaultSession");
+	
+	FString LobbyType = TEXT("Public");
+	
+	FString LobbyCode = TEXT("1234");
+
+	
 };
 
 #if UE_ENABLE_INCLUDE_ORDER_DEPRECATED_IN_5_2
