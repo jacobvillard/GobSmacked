@@ -135,6 +135,7 @@ void UCreateSessionCallbackProxyMP::OnCreateCompleted(FName SessionName, bool bW
 			{
 				StartCompleteDelegateHandle = Sessions->AddOnStartSessionCompleteDelegate_Handle(StartCompleteDelegate);
 				Sessions->StartSession(NAME_GameSession);
+				UE_LOG(LogTemp, Log, TEXT("🚀 EOS Session / Lobby created - ID = %d"), NAME_GameSession);
 
 				// OnStartCompleted will get called, nothing more to do now
 				return;
