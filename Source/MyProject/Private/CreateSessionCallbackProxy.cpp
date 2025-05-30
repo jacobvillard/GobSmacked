@@ -6,7 +6,7 @@
 #include "OnlineSubsystem.h"
 #include "OnlineSubsystemUtils.h"
 #include "OnlineSessionSettings.h"
-#include "OnlineSubsystemBPCallHelper.h"
+#include "OnlineSubsystemBPCallHelperMP.h"
 
 
 #include "GameFramework/PlayerController.h"
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////
 // FOnlineSubsystemBPCallHelper
 
-FOnlineSubsystemBPCallHelper::FOnlineSubsystemBPCallHelper(const TCHAR* CallFunctionContext, UObject* WorldContextObject, FName SystemName)
+FOnlineSubsystemBPCallHelperMP::FOnlineSubsystemBPCallHelperMP(const TCHAR* CallFunctionContext, UObject* WorldContextObject, FName SystemName)
 	: OnlineSub(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), SystemName))
 	, FunctionContext(CallFunctionContext)
 {
@@ -30,7 +30,7 @@ FOnlineSubsystemBPCallHelper::FOnlineSubsystemBPCallHelper(const TCHAR* CallFunc
 	}
 }
 
-void FOnlineSubsystemBPCallHelper::QueryIDFromPlayerController(APlayerController* PlayerController)
+void FOnlineSubsystemBPCallHelperMP::QueryIDFromPlayerController(APlayerController* PlayerController)
 {
 	UserID.Reset();
 
@@ -78,7 +78,7 @@ UCreateSessionCallbackProxyMP* UCreateSessionCallbackProxyMP::CreateSession(UObj
 
 void UCreateSessionCallbackProxyMP::Activate()
 {
-	FOnlineSubsystemBPCallHelper Helper(TEXT("CreateSession"), WorldContextObject);
+	FOnlineSubsystemBPCallHelperMP Helper(TEXT("CreateSession"), WorldContextObject);
 	Helper.QueryIDFromPlayerController(PlayerControllerWeakPtr.Get());
 
 	if (Helper.IsValid())
@@ -121,7 +121,7 @@ void UCreateSessionCallbackProxyMP::Activate()
 
 void UCreateSessionCallbackProxyMP::OnCreateCompleted(FName SessionName, bool bWasSuccessful)
 {
-	FOnlineSubsystemBPCallHelper Helper(TEXT("CreateSessionCallback"), WorldContextObject);
+	FOnlineSubsystemBPCallHelperMP Helper(TEXT("CreateSessionCallback"), WorldContextObject);
 	Helper.QueryIDFromPlayerController(PlayerControllerWeakPtr.Get());
 
 	if (Helper.IsValid())
@@ -150,7 +150,7 @@ void UCreateSessionCallbackProxyMP::OnCreateCompleted(FName SessionName, bool bW
 
 void UCreateSessionCallbackProxyMP::OnStartCompleted(FName SessionName, bool bWasSuccessful)
 {
-	FOnlineSubsystemBPCallHelper Helper(TEXT("StartSessionCallback"), WorldContextObject);
+	FOnlineSubsystemBPCallHelperMP Helper(TEXT("StartSessionCallback"), WorldContextObject);
 	Helper.QueryIDFromPlayerController(PlayerControllerWeakPtr.Get());
 
 	if (Helper.IsValid())

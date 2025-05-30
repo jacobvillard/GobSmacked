@@ -8,10 +8,10 @@ class APlayerController;
 class IOnlineSubsystem;
 
 // Helper class for various methods to reduce the call hierarchy
-struct FOnlineSubsystemBPCallHelper
+struct FOnlineSubsystemBPCallHelperMP
 {
 public:
-	FOnlineSubsystemBPCallHelper(const TCHAR* CallFunctionContext, UObject* WorldContextObject, FName SystemName = NAME_None);
+	FOnlineSubsystemBPCallHelperMP(const TCHAR* CallFunctionContext, UObject* WorldContextObject, FName SystemName = NAME_None);
 
 	void QueryIDFromPlayerController(APlayerController* PlayerController);
 
