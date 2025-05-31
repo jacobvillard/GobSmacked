@@ -18,6 +18,7 @@ public class MyProject : ModuleRules
 		// Uncomment if you are using online features
 		PrivateDependencyModuleNames.Add("OnlineSubsystem");
 		PrivateDependencyModuleNames.Add("OnlineSubsystemUtils");
+		PrivateDependencyModuleNames.Add("OnlineSubsystemEos");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
 	}

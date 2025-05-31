@@ -7,7 +7,7 @@ void UEOSLoginHelper::LoginWithDeviceId(bool bCreateNew)
 {
 	UE_LOG(LogTemp, Warning, TEXT("EOS DEBUG: Starting LoginWithDeviceId"));
 
-	IOnlineSubsystem* OnlineSub = IOnlineSubsystem::Get();
+	IOnlineSubsystem* OnlineSub = IOnlineSubsystem::Get(FName(TEXT("EOS")));
 	if (!OnlineSub)
 	{
 		UE_LOG(LogTemp, Error, TEXT("EOS DEBUG: OnlineSubsystem is NULL! Check if EOS is properly set as DefaultPlatformService."));
